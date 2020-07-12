@@ -2,6 +2,7 @@ import React from 'react';
 import Loader from 'react-loader-spinner';
 import { axiosWithAuth } from '../utils/AxiosWithAuth';
 
+
 class FriendsList extends React.Component {
 
     state = {
@@ -29,7 +30,7 @@ class FriendsList extends React.Component {
     render() {
         return(
             <>
-            <h2>Friends List</h2>
+           
             {this.state.friends.map(friend => {
                 return <div key={friend.id}>
                     <h3>{friend.name}</h3>
