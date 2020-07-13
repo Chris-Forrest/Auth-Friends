@@ -1,9 +1,26 @@
 import React from 'react';
 import { axiosWithAuth } from '../utils/AxiosWithAuth';
+import Loader from 'react-loader-spinner';
+import styled from 'styled-components';
+
+const StyledForm = styled.form `
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    border:1px solid rgb(210, 210, 210 );
+    border-radius: 5px;
+    box-shadow: 10px 8px 12px -2px rgb(128, 127, 197);
+    margin: 8px;
+    padding: 12px;
+    background-color:#8deb96;
+    width: 50%;
+    margin-left:25%;
+`
 
 class AddFriend extends React.Component {
 
     state = {
+        loading:true,
         newFriend: {
             id: Date.now(),
             name:'',
@@ -12,6 +29,13 @@ class AddFriend extends React.Component {
         }
     }
 
+    componentDidMount(){
+        this.isLoading();
+    }
+
+    isLoading = () => {
+        this.setState({ loading: false})
+    }
     handleChange = e => {
        this.setState({
         newFriend: {
@@ -33,8 +57,10 @@ class AddFriend extends React.Component {
     }
 
     render(){
+        const {loading} = this.state;
         return(
-            <form onSubmit={this.createNewFriend}>
+            <StyledForm onSubmit={this.createNewFriend}>
+                  { loading && <Loader type="Circles" color="#00bfff" height={100} width={100} />}
                 <h2>Add A friend </h2>
                 <label>Name</label>
                 <input
@@ -62,7 +88,7 @@ class AddFriend extends React.Component {
 
                 <button>Add New Friend</button>
 
-            </form>
+            </StyledForm>
         )
     }
 

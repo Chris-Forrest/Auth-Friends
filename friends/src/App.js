@@ -3,25 +3,31 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Login from './Components/Login';
 import PrivateRoute from './Components/PrivateRoute';
 import FriendsList from './Components/FriendsList';
-import AddFriend from './Components/AddFriend'
+import AddFriend from './Components/AddFriend';
+import styled from 'styled-components';
 
+
+const StyledNav = styled.nav `
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  margin-left:45%;
+`
 
 function App() {
   return (
     <Router>
      <div className="App">
+       <StyledNav>
       <h1>Auth friends App</h1>
-       <ul>
-         <li>
+       
            <Link to="/login">Login</Link>
-         </li>
-         <li>
+         
            <Link to="/protected">Friends List</Link>
-         </li>
-         <li>
+       
            <Link to="/addFriend">Add Friend</Link>
-         </li>
-       </ul>
+         
+       </StyledNav>
          <Switch>
            <PrivateRoute exact path="/protected" component={ FriendsList }/>
 
